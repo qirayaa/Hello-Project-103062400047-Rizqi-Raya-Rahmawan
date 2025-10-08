@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        /* Gaya spesifik untuk menu */
+        .menu-category-section {
+            margin-bottom: 40px;
+        }
+        .menu-category-section h2 {
+            font-size: 2.2em;
+            color: #5C3D2E;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #CCA47D;
+            padding-bottom: 10px;
+            display: inline-block; /* Untuk menyesuaikan lebar border bawah */
+            width: auto;
+            max-width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            position: relative;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+        .menu-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Menjaga konten terdistribusi */
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        .menu-item-content {
+            padding: 20px;
+            flex-grow: 1; /* Memastikan konten mengisi ruang yang tersedia */
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-item h3 {
+            font-size: 1.6em;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .menu-item p {
+            font-size: 0.95em;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            flex-grow: 1; /* Memastikan deskripsi mengisi ruang */
+        }
+        .menu-item .price {
+            font-size: 1.4em;
+            color: #5C3D2E;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .rating {
+            color: #FFD700; /* Warna bintang emas */
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .rating .filled {
+            color: #FFD700;
+        }
+        .rating .empty {
+            color: #ccc;
+        }
+        .add-to-cart-button {
+            background-color: #CCA47D; /* Warna yang lebih cerah */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%; /* Memastikan tombol selebar item */
+            margin-top: 15px; /* Memberi sedikit jarak */
+        }
+        .add-to-cart-button:hover {
+            background-color: #B5936E; /* Sedikit lebih gelap saat hover */
+            transform: translateY(-2px);
+        }
+        .cart-count { /* Untuk angka di navbar */
+            background-color: #dc3545;
+            color: white;
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/">Beranda</a>
+            <a href="/menu">Menu</a>
+            <a href="/about">Tentang Kami</a>
+            <a href="/gallery">Galeri</a>
+            <a href="/contact">Kontak</a>
+            <a href="/cart">Keranjang <span id="cart-item-count" class="cart-count">0</span></a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>{{ .title }}</h1>
+        </div>
+    </header>
+
+    <main class="container content-section">
+        {{ range $category, $items := .menuByCategory }}
+        <section class="menu-category-section">
+            <h2>{{ $category }}</h2>
+            <div class="menu-grid">
+                {{ range $item := $items }}
+                <div class="menu-item">
+                    <img src="{{ $item.Image }}" alt="{{ $item.Name }}">
+                    <div class="menu-item-content">
+                        <h3>{{ $item.Name }}</h3>
+                        <p>{{ $item.Description }}</p>
+                        <div class="rating">
+                            {{ $fullStars := floor $item.Rating }}
+                            {{ $halfStar := mod $item.Rating 1.0 }}
+                            {{ range $i := seq 1 5 }}
+                                {{ if lt $i $fullStars }}
+                                    <span class="filled">★</span>
+                                {{ else if and (eq $i $fullStars) (ge $halfStar 0.5) }}
+                                    <span class="filled">★</span> {{ else if eq $i $fullStars }}
+                                    <span class="empty">★</span>
+                                {{ else }}
+                                    <span class="empty">★</span>
+                                {{ end }}
+                            {{ end }}
+                            ({{ printf "%.1f" $item.Rating }})
+                        </div>
+                        <span class="price">Rp {{ formatRupiah $item.Price }}</span>
+                        <button class="button add-to-cart-button" data-id="{{ $item.ID }}">Tambah ke Keranjang</button>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Kopi Asik. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/cart.js"></script>
+</body>
+</html>

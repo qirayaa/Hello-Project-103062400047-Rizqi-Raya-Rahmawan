@@ -1,5 +1,3 @@
-//ini program main.go
-//menambah comment
 package main
 
 import (

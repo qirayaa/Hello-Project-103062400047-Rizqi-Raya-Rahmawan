@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        /* Contoh CSS sederhana untuk keranjang, tambahkan ke style.css jika Anda punya */
+        .cart-item {
+            border: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .cart-item h3 {
+            margin: 0;
+            color: #333;
+        }
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap; /* Untuk responsif */
+        }
+        .item-quantity-input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .item-subtotal {
+            font-weight: bold;
+            color: #5C3D2E;
+        }
+        .remove-item-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9em; /* Sedikit lebih kecil dari tombol umum */
+            transition: background-color 0.3s ease;
+        }
+        .remove-item-button:hover {
+            background-color: #c82333;
+        }
+        .customer-info-section, .payment-method-section, .cart-summary {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Penting untuk padding dan border */
+        }
+        .cart-summary {
+            text-align: right;
+        }
+        .cart-summary p {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .cart-summary button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+        .cart-summary button:hover {
+            background-color: #218838;
+        }
+        .button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .cart-count { /* Untuk angka di navbar */
+            background-color: #dc3545;
+            color: white;
+            font-size: 0.8em;
+            padding: 2px 6px;
+            border-radius: 50%;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/">Beranda</a>
+            <a href="/menu">Menu</a>
+            <a href="/about">Tentang Kami</a>
+            <a href="/gallery">Galeri</a>
+            <a href="/contact">Kontak</a>
+            <a href="/cart">Keranjang <span id="cart-item-count" class="cart-count">0</span></a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>{{ .title }}</h1>
+        </div>
+    </header>
+
+    <main class="container content-section">
+        <section>
+            <div id="empty-cart-message" style="display: none;">
+                <p>Keranjang belanja Anda kosong. Yuk, <a href="/menu">telusuri menu</a> kami!</p>
+            </div>
+
+            <div id="cart-content-wrapper" style="display: none;">
+                <div id="cart-items">
+                    </div>
+                
+                <div class="customer-info-section">
+                    <h2>Informasi Pelanggan</h2>
+                    <div class="form-group">
+                        <label for="customer-name">Nama Pelanggan:</label>
+                        <input type="text" id="customer-name" placeholder="Masukkan nama Anda" required>
+                    </div>
+                </div>
+
+                <div class="payment-method-section customer-info-section">
+                    <h2>Metode Pembayaran</h2>
+                    <div class="form-group">
+                        <label for="payment-method">Pilih Metode Pembayaran:</label>
+                        <select id="payment-method" required>
+                            <option value="">-- Pilih Metode --</option>
+                            <option value="Tunai">Tunai</option>
+                            <option value="Debit/Kredit">Debit/Kredit</option>
+                            <option value="QRIS">QRIS</option>
+                            <option value="GoPay">GoPay</option>
+                            <option value="Dana">Dana</option>
+                            <option value="ShopeePay">ShopeePay</option>
+                            <option value="OVO">OVO</option>
+                            <option value="Kasbon">Kasbon</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="cart-summary">
+                    <p>Total: <strong id="cart-total">Rp 0</strong></p>
+                    <button id="checkout-button" class="button">Lanjutkan ke Pembayaran</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Kopi Asik. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/cart.js"></script>
+</body>
+</html>

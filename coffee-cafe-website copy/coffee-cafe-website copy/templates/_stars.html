@@ -1,0 +1,15 @@
+{{ define "stars" }}
+    {{ $rating := . }}
+    {{ $fullStars := floor $rating }}
+    {{ $halfStar := eq ($rating | mod 1.0) 0.5 }}
+
+    {{ range $i := (seq 1 5) }}
+        {{ if le $i $fullStars }}
+            <span class="star">&#9733;</span> {{/* Bintang penuh */}}
+        {{ else if and $halfStar (eq $i (add $fullStars 1)) }}
+            <span class="star">&#9733;&#xFE0E;</span> {{/* Bintang setengah, menggunakan variasi karakter unicode */}}
+        {{ else }}
+            <span class="star" style="color: #ccc;">&#9734;</span> {{/* Bintang kosong */}}
+        {{ end }}
+    {{ end }}
+{{ end }}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/">Beranda</a>
+            <a href="/menu">Menu</a>
+            <a href="/about">Tentang Kami</a>
+            <a href="/gallery">Galeri</a>
+            <a href="/contact">Kontak</a>
+            <a href="/cart">Keranjang</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>{{ .title }}</h1>
+        </div>
+    </header>
+
+    <main class="container content-section">
+        <section>
+            <h2>Momen-Momen Indah di Kopi Asik</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="/static/img/gallery1.jpg" alt="Suasana Kedai">
+                    <div class="gallery-caption">Suasana Nyaman</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/static/img/gallery2.jpg" alt="Barista Sedang Meracik">
+                    <div class="gallery-caption">Proses Peracikan Kopi</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/static/img/gallery3.jpg" alt="Latte Art">
+                    <div class="gallery-caption">Seni Latte</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/static/img/gallery4.jpg" alt="Kopi dan Buku">
+                    <div class="gallery-caption">Waktu Santai</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/static/img/gallery5.jpg" alt="Interior Kedai">
+                    <div class="gallery-caption">Desain Interior</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="/static/img/gallery6.jpg" alt="Pertemuan Teman">
+                    <div class="gallery-caption">Tempat Berkumpul</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-style: italic; color: #777;">Temukan lebih banyak momen kami di media sosial!</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Kopi Asik. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+</body>
+</html>
