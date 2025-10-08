@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            background-image: url(https://images.app.goo.gl/XqoyayeH6a5HBXbR8);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh; /* Memastikan latar belakang menutupi seluruh tinggi halaman */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/">Beranda</a>
+            <a href="/menu">Menu</a>
+            <a href="/about">Tentang Kami</a>
+            <a href="/gallery">Galeri</a>
+            <a href="/contact">Kontak</a>
+            <a href="/cart">Keranjang</a>
+        </div>
+    </nav>
+
+    <header class="hero" style="background-color: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px; position: relative; overflow: hidden;">
+        <div style="position: absolute; inset: 0; z-index: -1;">
+            <img src="/static/img/background_text.jpg" alt="Latar Belakang Judul" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
+        </div>
+
+        <div class="container" style="position: relative; z-index: 1;">
+            <h1 style="color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0.5); padding: 10px; border-radius: 5px; display: inline-block;">Selamat Datang di Kopi Asik!</h1>
+            <p style="color: white;">Nikmati setiap tetes kopi berkualitas tinggi dalam suasana nyaman.</p>
+            <a href="/menu" class="button">Lihat Menu Kami</a>
+        </div>
+    </header>
+
+    <main class="container content-section" style="background-color: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 10px; margin-top: 20px;">
+        <section class="promo-section">
+            <h2>Promo Spesial Bulan Ini!</h2>
+            <p>Dapatkan diskon 15% untuk semua minuman non-kopi setiap hari Selasa!</p>
+            <a href="/menu" class="button button-secondary">Cek Promonya</a>
+        </section>
+
+        <section class="about-us-preview">
+            <h2>Tentang Kami</h2>
+            <p>Kopi Asik berkomitmen untuk menyajikan biji kopi terbaik dan menciptakan pengalaman yang tak terlupakan bagi setiap pelanggan.</p>
+            <a href="/about" class="button">Pelajari Lebih Lanjut</a>
+        </section>
+
+        <section class="featured-menu">
+            <h2>Menu Pilihan</h2>
+            <div class="menu-grid">
+                <div class="menu-item-card">
+                    <img src="/static/img/cappuccino.jpg" alt="Cappuccino">
+                    <h3>Cappuccino</h3>
+                    <p>Espresso dengan susu steamed dan foam.</p>
+                    <div class="item-rating">
+                        {{ template "stars" 4.8 }} <span class="rating-value">(4.8)</span>
+                    </div>
+                    <span class="price">Rp 30.000</span>
+                    <button class="button add-to-cart-button" data-id="coffee-cappuccino">Tambah ke Keranjang</button>
+                </div>
+                <div class="menu-item-card">
+                    <img src="/static/img/croissant.jpg" alt="Croissant">
+                    <h3>Croissant</h3>
+                    <p>Pastry croissant Prancis yang renyah dan lezat.</p>
+                    <div class="item-rating">
+                        {{ template "stars" 4.3 }}
+                        <span class="rating-value">(4.3)</span>
+                    </div>
+                    <span class="price">Rp 18.000</span>
+                    <button class="button add-to-cart-button" data-id="food-croissant">Tambah ke Keranjang</button>
+                </div>
+                <div class="menu-item-card">
+                    <img src="/static/img/green_tea_latte.jpg" alt="Green Tea Latte">
+                    <h3>Green Tea Latte</h3>
+                    <p>Matcha terbaik dengan susu steamed.</p>
+                    <div class="item-rating">
+                        {{ template "stars" 4.5 }}
+                        <span class="rating-value">(4.5)</span>
+                    </div>
+                    <span class="price">Rp 33.000</span>
+                    <button class="button add-to-cart-button" data-id="noncoffee-greentealatte">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: rgba(255, 255, 255, 0.7); padding: 10px; border-radius: 10px; text-align: center; margin-top: 20px;">
+        <div class="container">
+            <p>© 2025 Kopi Asik. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/cart.js"></script>
+</body>
+</html>

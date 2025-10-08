@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Asik - Kontak</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/">Beranda</a>
+            <a href="/menu">Menu</a>
+            <a href="/about">Tentang Kami</a>
+            <a href="/gallery">Galeri</a>
+            <a href="/contact">Kontak</a>
+            <a href="/cart">Keranjang (<span id="cart-item-count">0</span>)</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Kontak Kami</h1>
+        </div>
+    </header>
+
+    <main class="container content-section">
+        <section class="contact-info">
+            <h2>Informasi Kontak</h2>
+            <p><strong>Alamat:</strong> Jl. Halimun Raya No.2, RT.15/RW.6, Guntur, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12980</p>
+            <p><strong>Telepon:</strong> <a href="tel:+6281234567890">+62 812-3456-7890</a></p>
+            <p><strong>Email:</strong> <a href="mailto:Kedaikopiasik@gmail.com">Kedaikopiasik@gmail.com</a></p>
+            <p><strong>Jam Operasional:</strong> 09.00 - 00.00</p>
+        </section>
+
+        <section class="location-map">
+            <h2>Lokasi Kami</h2>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.129124831566!2d106.83111751510432!3d-6.206003795505373!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5fd105e5e79%3A0xf938a4e98e6c1021!2sJl.%20Halimun%20Raya%20No.2%2C%20RT.15%2FRW.6%2C%20Guntur%2C%20Kec.%20Setiabudi%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2012980!5e0!3m2!1sen!2sid!4v1717150000000!5m2!1sen!2sid"
+              width="100%"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <p class="map-note">Telkom University Kampus Jakarta - Kampus 2</p>
+        </section>
+
+        <section class="contact-form">
+            <h2>Kirim Pesan kepada Kami</h2>
+            <form id="contact-message-form">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap:</label>
+                    <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Anda:</label>
+                    <input type="email" id="email" name="email" required placeholder="Masukkan email Anda">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subjek:</label>
+                    <input type="text" id="subject" name="subject" placeholder="Subjek pesan Anda">
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan Anda:</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tulis pesan Anda di sini..."></textarea>
+                </div>
+                <button type="submit" class="button">Kirim Pesan</button>
+            </form>
+            <p id="form-submission-message" class="form-note" style="color: green; display: none;">Pesan Anda berhasil dikirim!</p>
+            <p id="form-error-message" class="form-note" style="color: red; display: none;">Terjadi kesalahan jaringan atau server. Silakan coba lagi.</p>
+            <p class="form-note" style="font-style: italic; color: #777;">*Pesan akan ditampilkan di konsol server Go Anda.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Kopi Asik. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+    <script src="/static/js/cart.js"></script> <script src="/static/js/contact.js"></script>
+</body>
+</html>

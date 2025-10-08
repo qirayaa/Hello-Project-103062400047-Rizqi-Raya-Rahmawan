@@ -1,0 +1,771 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f5f2; /* Soft background */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #3e2723; /* Dark brown */
+    color: #fff;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav .container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #e0b28e; /* Lighter brown on hover */
+}
+
+/* Hero Section (Homepage) */
+.hero {
+    background: url('/static/img/hero_coffee.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    height: 400px; /* Atur tinggi hero section */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Page Header (Other Pages) */
+.page-header {
+    background-color: #6d4c41; /* Medium brown */
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 2.8em;
+    margin: 0;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 40px 0;
+}
+
+section {
+    background-color: #fff;
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+section h2 {
+    color: #3e2723;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.2em;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    background-color: #8d6e63; /* Light brown */
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.button:hover {
+    background-color: #795548; /* Darker on hover */
+    transform: translateY(-2px);
+}
+
+.button-secondary {
+    background-color: #6d4c41; /* Darker brown */
+}
+
+.button-secondary:hover {
+    background-color: #5d4037;
+}
+
+.button-danger {
+    background-color: #dc3545; /* Merah untuk hapus/bahaya */
+}
+.button-danger:hover {
+    background-color: #c82333;
+}
+.button-small {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+
+/* Homepage Specifics */
+.promo-section {
+    text-align: center;
+    background-color: #ffe0b2; /* Lighter background for promo */
+    color: #3e2723;
+    padding: 30px;
+}
+.promo-section h2 {
+    color: #3e2723;
+}
+.about-us-preview p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-us-preview .button {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.featured-menu .menu-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Menu Page */
+.menu-category h2 {
+    border-bottom: 2px solid #e0b28e;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.menu-item-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-5px);
+}
+
+.menu-item-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.menu-item-card h3 {
+    color: #3e2723;
+    margin: 15px 10px 5px;
+    font-size: 1.5em;
+}
+
+.menu-item-card p {
+    color: #777;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Pastikan paragraf mengisi ruang yang tersedia */
+}
+
+/* Rating Stars Styling */
+.item-rating {
+    margin: 5px 0 10px;
+    font-size: 1.1em;
+    color: #ffc107; /* Warna kuning untuk bintang */
+}
+
+.item-rating .star {
+    margin-right: 2px;
+}
+
+.item-rating .rating-value {
+    font-size: 0.9em;
+    color: #666;
+    margin-left: 5px;
+}
+
+
+.menu-item-card .price {
+    font-weight: bold;
+    color: #8d6e63;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    display: block; /* Pastikan harga berada di baris sendiri */
+}
+
+.add-to-cart-button {
+    width: calc(100% - 30px); /* Lebar tombol menyesuaikan card */
+    margin: 0 15px 15px; /* Margin bawah dan samping */
+    padding: 10px 0;
+    font-size: 0.95em;
+}
+
+
+/* About Page */
+.about-content {
+    margin-bottom: 40px;
+    text-align: justify;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+}
+
+.team-section h2 {
+    margin-top: 40px;
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.team-member {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    width: 280px;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #e0b28e;
+}
+
+.team-member h3 {
+    color: #3e2723;
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    color: #666;
+    font-size: 0.95em;
+}
+
+/* Tambahan untuk Misi & Visi */
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.mission-vision-card {
+    background-color: #fbf7f4;
+    border: 1px solid #e0b28e;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.mission-vision-card h3 {
+    color: #3e2723;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.mission-vision-card p,
+.mission-vision-card ul {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    text-align: left; /* Sesuaikan jika ingin justify */
+}
+
+.mission-vision-card ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.mission-vision-card li {
+    margin-bottom: 8px;
+}
+
+
+/* Gallery Page */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.1em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+    opacity: 1;
+}
+
+/* Contact Page */
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.contact-info a {
+    color: #8d6e63;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-form-section {
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Ensures padding doesn't expand the element */
+}
+
+.contact-form textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px;
+}
+
+.contact-form .button {
+    width: auto;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.form-note {
+    font-size: 0.9em;
+    color: #777;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.map-section {
+    text-align: center;
+}
+
+.map-container {
+    width: 100%;
+    height: 450px; /* Tinggi peta */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+    border: none;
+}
+
+/* Cart Page */
+#empty-cart-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    color: #777;
+}
+
+#empty-cart-message a {
+    color: #8d6e63;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#empty-cart-message a:hover {
+    text-decoration: underline;
+}
+
+#cart-items {
+    margin-top: 20px;
+}
+
+.cart-item {
+    background-color: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-item h3 {
+    color: #3e2723;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.4em;
+}
+
+.cart-item p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.cart-item-controls label {
+    font-weight: bold;
+    color: #555;
+}
+
+.item-quantity-input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.item-subtotal {
+    font-weight: bold;
+    color: #8d6e63;
+    margin-left: auto; /* Push subtotal to the right */
+}
+
+.customer-info-section, .payment-method-section {
+    margin-top: 30px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.customer-info-section h2, .payment-method-section h2 {
+    text-align: left;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #3e2723;
+}
+
+.customer-info-section .form-group, .payment-method-section .form-group {
+    margin-bottom: 15px;
+}
+
+.customer-info-section label, .payment-method-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.customer-info-section input[type="text"], .payment-method-section select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.cart-summary {
+    text-align: right;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #3e2723;
+}
+
+.cart-summary p {
+    font-size: 1.8em;
+    color: #3e2723;
+    margin-bottom: 20px;
+}
+
+.cart-summary button {
+    font-size: 1.2em;
+    padding: 15px 30px;
+}
+
+/* Receipt Page - Updated Styling for Cleaner Look */
+.receipt-container { /* Ganti dari .receipt-section */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px; /* Lebih banyak padding */
+    margin: 40px auto; /* Lebih banyak margin atas/bawah */
+    max-width: 450px; /* Lebar lebih ringkas seperti struk asli */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Consolas', 'Courier New', monospace; /* Font monospasi untuk tampilan struk */
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#receipt-details {
+    /* Ini adalah div yang akan diisi oleh JS, jadi tidak perlu border di sini */
+    text-align: center; /* Konten struk di tengah */
+}
+
+.receipt-header {
+    margin-bottom: 20px;
+}
+.receipt-header h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #3e2723;
+}
+.receipt-header p {
+    margin: 2px 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.receipt-divider {
+    border-top: 1px dashed #999;
+    margin: 20px 0;
+}
+
+.receipt-info p {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 14px;
+    color: #444;
+}
+.receipt-info p span {
+    font-weight: bold;
+    color: #333;
+}
+
+.receipt-items {
+    text-align: left; /* Item list rata kiri */
+    margin-top: 20px;
+}
+.receipt-items h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #3e2723;
+    text-align: center; /* Judul item list di tengah */
+}
+.receipt-items p { /* Menggunakan <p> untuk setiap item */
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #ccc; /* Garis putus-putus di bawah setiap item */
+    font-size: 13px;
+    color: #555;
+}
+.receipt-items p:last-child {
+    border-bottom: none; /* Hilangkan garis di item terakhir */
+}
+
+.receipt-total {
+    text-align: right;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 2px solid #3e2723;
+}
+.receipt-total p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #3e2723;
+    margin: 0;
+}
+
+.receipt-footer {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+.receipt-footer p {
+    margin: 3px 0;
+}
+
+
+.receipt-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Override .button for primary print button */
+#print-receipt-button {
+    background-color: #8B4513; /* Warna cokelat yang lebih gelap untuk cetak */
+}
+
+#print-receipt-button:hover {
+    background-color: #6a340f;
+}
+
+
+/* Media Query for Print - Styling when printing the page */
+@media print {
+    body {
+        background-color: #fff; /* Pastikan background putih saat dicetak */
+        -webkit-print-color-adjust: exact !important; /* Untuk browser berbasis Webkit */
+        print-color-adjust: exact !important; /* Standard */
+        margin: 0; /* Pastikan margin 0 untuk cetakan */
+        padding: 0;
+    }
+
+    /* Sembunyikan navigasi, footer, dan tombol aksi saat mencetak */
+    nav, footer, .receipt-actions, .container > h1 { /* Sembunyikan juga judul "Struk Pesanan" dari main.go */
+        display: none !important;
+    }
+
+    /* Atur tampilan area cetak */
+    .container {
+        max-width: none; /* Hilangkan max-width container */
+        padding: 0;
+        margin: 0;
+    }
+
+    .receipt-container {
+        box-shadow: none; /* Hilangkan bayangan */
+        border: none; /* Hilangkan border */
+        padding: 0;
+        margin: 0; /* Hilangkan margin untuk memaksimalkan ruang */
+        width: 100%; /* Lebar penuh */
+        max-width: none; /* Hilangkan max-width */
+        font-size: 11px; /* Ukuran font lebih kecil untuk cetakan */
+    }
+
+    .receipt-header h3 {
+        font-size: 18px; /* Lebih kecil untuk cetakan */
+    }
+    .receipt-info p,
+    .receipt-items p,
+    .receipt-items h4,
+    .receipt-total p {
+        font-size: 12px; /* Lebih kecil untuk cetakan */
+    }
+    .receipt-footer p {
+        font-size: 10px; /* Lebih kecil untuk cetakan */
+    }
+
+    /* Pastikan warna teks terlihat */
+    .receipt-header, .receipt-info, .receipt-items, .receipt-total, .receipt-footer {
+        color: #000 !important; /* Pastikan semua teks hitam */
+    }
+    .receipt-info p span, .receipt-total p {
+        color: #000 !important;
+    }
+
+    /* Atur margin/padding untuk tampilan cetak yang rapi */
+    .receipt-header, .receipt-info, .receipt-items, .receipt-total, .receipt-footer {
+        margin-bottom: 5px; /* Kurangi margin antar bagian */
+    }
+    .receipt-divider {
+        margin: 10px 0; /* Kurangi margin divider */
+    }
+
+    /* Pastikan list item tercetak dengan rapi */
+    .receipt-items p {
+        padding-bottom: 3px;
+    }
+}

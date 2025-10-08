@@ -1,0 +1,264 @@
+--- START OF FILE receipt.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Asik - Struk Pesanan</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        /* Gaya khusus untuk struk */
+        .receipt-container {
+            width: 100%;
+            max-width: 400px; /* Lebar maksimum seperti struk */
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: white;
+            font-family: 'Consolas', 'Courier New', monospace; /* Font monospasi untuk kesan struk */
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        .receipt-header, .receipt-footer {
+            text-align: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .receipt-header h2 {
+            margin: 5px 0;
+            color: var(--primary-color);
+        }
+
+        .receipt-details p {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .receipt-details p strong {
+            flex-basis: 40%; /* Lebar untuk label */
+            text-align: left;
+        }
+        .receipt-details p span {
+            flex-basis: 60%; /* Lebar untuk nilai */
+            text-align: right;
+        }
+
+        .receipt-items {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .receipt-items h4 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .receipt-items ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .receipt-items ul li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .receipt-items ul li .item-name {
+            flex-grow: 1;
+            text-align: left;
+        }
+        .receipt-items ul li .item-qty-price {
+            white-space: nowrap; /* Mencegah pecah baris */
+            text-align: right;
+            margin-left: 10px;
+        }
+
+        .receipt-total {
+            text-align: right;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 15px;
+        }
+
+        .receipt-message {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .receipt-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Sembunyikan elemen navigasi dan footer saat dicetak */
+        @media print {
+            nav, footer, .receipt-actions { /* Semua tombol di .receipt-actions disembunyikan saat cetak */
+                display: none !important;
+            }
+            body {
+                background-color: white !important;
+                box-shadow: none !important;
+                margin: 0;
+                padding: 0;
+            }
+            .receipt-container {
+                border: none !important;
+                box-shadow: none !important;
+                max-width: none;
+                width: auto;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="/">Beranda</a>
+            <a href="/menu">Menu</a>
+            <a href="/cart">Keranjang (<span id="cart-item-count">0</span>)</a>
+            <a href="/about">Tentang Kami</a>
+            <a href="/gallery">Galeri</a>
+            <a href="/contact">Kontak</a>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Struk Pesanan</h1>
+        </div>
+    </header>
+
+    <main class="container content-section">
+        <div id="receipt-content" class="receipt-container">
+            <div class="receipt-header">
+                <h2>Kopi Asik</h2>
+                <p>Jl. Halimun Raya No.2</p>
+                <p>Jakarta Selatan, Indonesia</p>
+                <p>Telp: +62 812-3456-7890</p>
+            </div>
+
+            <div id="order-details" class="receipt-details">
+                <p>Memuat detail pesanan...</p>
+            </div>
+
+            <div class="receipt-footer">
+                <p>Terima Kasih Atas Pesanan Anda!</p>
+                <p>Datang Kembali!</p>
+            </div>
+        </div>
+
+        <div class="receipt-actions">
+            <button id="print-receipt-button" class="button button-primary">Cetak Struk</button>
+            <a href="/menu" class="button button-secondary">Kembali ke Menu</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Kopi Asik. Semua Hak Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/cart.js"></script> <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderDetailsDiv = document.getElementById('order-details');
+            const checkoutDetailsString = sessionStorage.getItem('checkoutDetails');
+            const cartCountElement = document.getElementById('cart-item-count');
+            const printButton = document.getElementById('print-receipt-button');
+
+            function formatRupiah(number) {
+                if (typeof number !== 'number' || isNaN(number)) {
+                    return 'Rp 0';
+                }
+                return new Intl.NumberFormat('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(number);
+            }
+
+            async function updateReceiptCartCount() {
+                try {
+                    const response = await fetch('/api/cart-items');
+                    if (response.ok) {
+                        const data = await response.json();
+                        const itemCount = data.items ? data.items.reduce((sum, item) => sum + (item.quantity || 0), 0) : 0;
+                        if (cartCountElement) cartCountElement.textContent = itemCount;
+                    } else {
+                        if (cartCountElement) cartCountElement.textContent = '0';
+                    }
+                } catch (error) {
+                    if (cartCountElement) cartCountElement.textContent = '0';
+                }
+            }
+            updateReceiptCartCount();
+
+
+            if (checkoutDetailsString) {
+                try {
+                    const checkoutDetails = JSON.parse(checkoutDetailsString);
+                    console.log("DEBUG: Loaded checkoutDetails from sessionStorage:", checkoutDetails);
+
+                    let cartItemsHtml = '<div class="receipt-items"><h4>Item Pesanan:</h4><ul>';
+                    checkoutDetails.cart.forEach(item => {
+                        cartItemsHtml += `
+                            <li>
+                                <span class="item-name">${item.name} (${item.quantity}x)</span>
+                                <span class="item-qty-price">${formatRupiah(item.price * item.quantity)}</span>
+                            </li>
+                        `;
+                    });
+                    cartItemsHtml += '</ul></div>';
+
+                    orderDetailsDiv.innerHTML = `
+                        <p><strong>ID Pesanan:</strong> <span>${checkoutDetails.orderID || 'Tidak Diketahui'}</span></p>
+                        <p><strong>Waktu Pesanan:</strong> <span>${new Date(checkoutDetails.orderTime).toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' }) || 'Tidak Diketahui'}</span></p>
+                        <p><strong>Nama Pelanggan:</strong> <span>${checkoutDetails.customerName || 'Tidak Diketahui'}</span></p>
+                        <p><strong>Metode Pembayaran:</strong> <span>${checkoutDetails.paymentMethod || 'Tidak Diketahui'}</span></p>
+                        ${cartItemsHtml}
+                        <p class="receipt-total"><strong>Total Pembayaran:</strong> <span>${formatRupiah(checkoutDetails.total || 0)}</span></p>
+                        <p class="receipt-message">${checkoutDetails.message || ''}</p>
+                    `;
+                    
+                    // Hapus data dari sessionStorage setelah digunakan agar tidak muncul lagi saat refresh
+                    sessionStorage.removeItem('checkoutDetails');
+
+                } catch (e) {
+                    console.error("ERROR: Failed to parse checkout details from sessionStorage:", e);
+                    orderDetailsDiv.innerHTML = '<p style="color: red;">Gagal memuat detail pesanan. Data tidak valid.</p>';
+                    if (printButton) printButton.disabled = true; // Nonaktifkan tombol jika data gagal dimuat
+                }
+            } else {
+                orderDetailsDiv.innerHTML = '<p style="text-align: center;">Tidak ada detail pesanan yang ditemukan. Silakan lakukan pemesanan terlebih dahulu.</p>';
+                if (printButton) printButton.disabled = true; // Nonaktifkan tombol jika tidak ada data
+            }
+
+            // Fungsi untuk mencetak struk menggunakan window.print()
+            if (printButton) {
+                printButton.addEventListener('click', () => {
+                    window.print();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
